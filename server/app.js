@@ -4,12 +4,13 @@ const youtube = require("./youtube.js");
 
 const app = express();
 
-app.post("/", express.urlencoded({ extended: false }), (req, res) => {
-  const videoID = req.body.videoID;
+app.get("/comments", (req, res) => {
+  const videoID = req.query.v;
+
   const promise = youtube.getComments(videoID, process.env.YOUTUBE_API);
 
   promise
-    .then((response) => console.log(response))
+    .then((response) => res.send(response))
     .catch((err) => console.log(err));
 });
 
