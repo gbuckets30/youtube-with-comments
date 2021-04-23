@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import YoutubeEmbed from "./components/YoutubeEmbed";
 
 function App() {
+  const [videoID, setVideoID] = useState("");
+  const [currentVideoID, setCurrentVideoID] = useState("L2vS_050c-M");
+
+  function handleLoadVideoClick(event) {
+    setCurrentVideoID(videoID);
+    setVideoID("");
+    event.preventDefault();
+  }
+
+  function handleInputChange(event) {
+    const video = event.target.value;
+    setVideoID(video);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        onChange={handleInputChange}
+        type="text"
+        value={videoID}
+        placeholder="Enter video ID"
+      />
+      <button onClick={handleLoadVideoClick}>Load Video</button>
+      <div className="video">
+        <YoutubeEmbed videoID={currentVideoID} />
+      </div>
     </div>
   );
 }
