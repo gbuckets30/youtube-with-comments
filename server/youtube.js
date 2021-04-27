@@ -84,5 +84,6 @@ function extractRelevantReplyData(result) {
       )
     );
   });
+  arr.reverse();
   return arr;
 }
