@@ -1,50 +1,87 @@
 /**************************************************** container classes ***************************************************************/
 
+.columns {
+  display: flex;
+}
+
 .video {
   margin: 30px 30px 0px 30px;
   max-height: 720px;
-  width: 900px;
+  width: 70%;
 }
 
 .comments {
+  font-family: "Roboto", sans-serif;
   max-height: 720px;
+  margin-top: 30px;
   overflow-y: auto;
-  width: 720px;
+  width: 30%;
 }
 /**************************************************** element classes *****************************************************************/
 
 .comment-box {
   background: white;
-  border-radius: 5px;
-  height: 80px;
-  margin: 10px auto;
-  width: 700px;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.column-right {
+  width: 90%;
 }
 
 .comment-profile-image {
   background: #148f77;
   border-radius: 300px;
-  float: left;
-  height: 60px;
-  margin: 6px 6px 0px 6px;
-  width: 60px;
+  height: 40px;
+  margin-right: 10px;
+  width: 40px;
 }
 
 .comment-username {
   color: #000;
   font-weight: bold;
-  float: left;
-  margin-top: 6px;
   padding: 0px;
+  margin-top: 0px;
+  vertical-align: text-top;
 }
 
 .comment-time {
-  float: left;
-  margin: 6px 0px 0px 6px;
+  color: #696969;
+  margin-left: 6px;
   padding: 0px;
 }
 
 .comment-text {
-  color: #424242;
-  margin: 6px 0px 0px 6px;
+  margin-bottom: 6px;
+}
+
+.likes {
+  margin-bottom: 6px;
+}
+
+.icons {
+  color: #a9a9a9;
+  font-size: 0.8rem;
+}
+
+.like-count {
+  color: #a9a9a9;
+  font-size: 0.8rem;
+  margin: 0px 16px 0px 4px;
+}
+
+.replies {
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sort-down-icon {
+  margin-right: 16px;
+  vertical-align: text-top;
+}
+
+.view-reply {
+  margin: 0px;
+  padding: 0px;
 }
