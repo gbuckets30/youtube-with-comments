@@ -1,5 +1,13 @@
 const { google } = require("googleapis");
 
+function Video(title, views, date, likes, dislikes) {
+  this.title = title;
+  this.views = views;
+  this.date = date;
+  this.likes = likes;
+  this.dislikes = dislikes;
+}
+
 function Comment(id, username, image, time, text, likes, replies) {
   this.id = id;
   this.username = username;
@@ -43,11 +51,32 @@ exports.getReplies = (commentID, key) => {
       maxResults: 100,
       parentId: commentID,
     })
-    .then((result) => {
-      return extractRelevantReplyData(result.data);
-    })
+    .then((result) => extractRelevantReplyData(result.data))
     .catch((err) => console.log(err));
 };
+
+exports.getVideoDetails = (videoID, key) => {
+  return google
+    .youtube("v3")
+    .videos.list({
+      key: key,
+      part: ["snippet", "statistics"],
+      id: videoID,
+    })
+    .then((result) => extractRelevantVideoData(result.data))
+    .catch((err) => console.log(err));
+};
+
+function extractRelevantVideoData(result) {
+  const video = result.items[0];
+  return new Video(
+    video.snippet.title,
+    video.statistics.viewCount,
+    video.snippet.publishedAt,
+    video.statistics.likeCount,
+    video.statistics.dislikeCount
+  );
+}
 
 function extractRelevantCommentData(result) {
   const comments = result.items;
