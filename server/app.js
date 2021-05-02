@@ -5,6 +5,16 @@ const cors = require("cors");
 
 const app = express();
 
+app.get("/video", cors(), (req, res) => {
+  const videoID = req.query.v;
+
+  const promise = youtube.getVideoDetails(videoID, process.env.YOUTUBE_API);
+
+  promise
+    .then((response) => res.json(response))
+    .catch((err) => console.log(err));
+});
+
 app.get("/comments", cors(), (req, res) => {
   const videoID = req.query.v;
 
